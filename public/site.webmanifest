@@ -1,0 +1,13 @@
+{
+  "name": "Kozy Heating Solutions",
+  "short_name": "Kozy Heating",
+  "description": "Reliable heating and gas work, done properly. Boiler installation, servicing and repairs across Scotland.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fafafa",
+  "theme_color": "#006be6",
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
