@@ -67,12 +67,12 @@ export default function AboutPage() {
           </div>
 
           <div>
-            <div className="relative aspect-[16/10] overflow-hidden rounded-2xl">
+            <div className="group relative aspect-16/10 overflow-hidden rounded-2xl">
               <Image
                 src="/images/kozy-heating-van.webp"
                 alt="Kozy Heating Solutions engineer and van"
                 fill
-                className="object-cover"
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
               />
             </div>
 
@@ -83,10 +83,13 @@ export default function AboutPage() {
               {commitments.map(({ icon: Icon, label }) => (
                 <div
                   key={label}
-                  className="rounded-2xl border border-border p-6"
+                  className="group rounded-2xl border border-border p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg"
                 >
-                  <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary-light">
-                    <Icon size={20} className="text-primary" />
+                  <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary-light transition-colors duration-300 group-hover:bg-primary">
+                    <Icon
+                      size={20}
+                      className="text-primary transition-colors duration-300 group-hover:text-white"
+                    />
                   </span>
                   <p className="mt-4 text-sm font-semibold text-foreground">
                     {label}

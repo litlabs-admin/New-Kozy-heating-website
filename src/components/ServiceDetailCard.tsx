@@ -10,9 +10,13 @@ export function ServiceDetailCard({
   description: string;
 }) {
   return (
-    <div className="rounded-2xl bg-white p-8 shadow-[0_1px_2px_rgba(16,24,40,0.06),0_1px_3px_rgba(16,24,40,0.06)] border border-border/60">
-      <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary-light">
-        <Icon size={20} className="text-primary" strokeWidth={2} />
+    <div className="group rounded-2xl bg-white p-8 shadow-[0_1px_2px_rgba(16,24,40,0.06),0_1px_3px_rgba(16,24,40,0.06)] border border-border/60 transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg">
+      <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary-light transition-colors duration-300 group-hover:bg-primary">
+        <Icon
+          size={20}
+          className="text-primary transition-colors duration-300 group-hover:text-white"
+          strokeWidth={2}
+        />
       </div>
       <h3 className="mt-5 font-heading text-lg font-semibold text-foreground">
         {title}

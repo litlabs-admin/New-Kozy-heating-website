@@ -67,9 +67,12 @@ export default function Home() {
               </h2>
               <ul className="mt-5 space-y-4">
                 {whyChooseUs.map(({ icon: Icon, label }) => (
-                  <li key={label} className="flex items-center gap-3">
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary-light">
-                      <Icon size={17} className="text-primary" />
+                  <li key={label} className="group flex items-center gap-3">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary-light transition-colors duration-300 group-hover:bg-primary">
+                      <Icon
+                        size={17}
+                        className="text-primary transition-colors duration-300 group-hover:text-white"
+                      />
                     </span>
                     <span className="text-sm font-medium text-foreground/90">
                       {label}
@@ -97,9 +100,12 @@ export default function Home() {
           </div>
           <a
             href="/services"
-            className="inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold text-primary hover:text-primary-dark"
+            className="group inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold text-primary transition-colors hover:text-primary-dark"
           >
-            View all services →
+            View all services
+            <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
+              →
+            </span>
           </a>
         </div>
 
@@ -121,10 +127,15 @@ export default function Home() {
             who are happy to recommend us.
           </p>
 
-          <div className="mt-10 rounded-2xl bg-white px-8 py-10 shadow-sm">
+          <div className="mt-10 rounded-2xl bg-white px-8 py-10 shadow-sm transition-shadow duration-300 hover:shadow-md">
             <div className="flex justify-center gap-1">
               {Array.from({ length: 5 }).map((_, i) => (
-                <Star key={i} size={22} className="fill-amber-400 text-amber-400" />
+                <Star
+                  key={i}
+                  size={22}
+                  className="fill-amber-400 text-amber-400 transition-transform duration-200 hover:scale-125"
+                  style={{ transitionDelay: `${i * 40}ms` }}
+                />
               ))}
             </div>
             <p className="mt-4 font-heading text-lg font-semibold text-foreground">

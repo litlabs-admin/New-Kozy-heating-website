@@ -49,7 +49,7 @@ export function ContactForm() {
           type="text"
           required
           placeholder="Your name"
-          className="mt-2 w-full rounded-lg border border-border bg-white px-4 py-3 text-sm text-foreground placeholder:text-muted focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+          className="mt-2 w-full rounded-lg border border-border bg-white px-4 py-3 text-sm text-foreground placeholder:text-muted transition-all duration-200 hover:border-primary/50 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
         />
       </div>
 
@@ -63,7 +63,7 @@ export function ContactForm() {
           type="email"
           required
           placeholder="Your email address"
-          className="mt-2 w-full rounded-lg border border-border bg-white px-4 py-3 text-sm text-foreground placeholder:text-muted focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+          className="mt-2 w-full rounded-lg border border-border bg-white px-4 py-3 text-sm text-foreground placeholder:text-muted transition-all duration-200 hover:border-primary/50 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
         />
       </div>
 
@@ -76,7 +76,7 @@ export function ContactForm() {
           name="phone"
           type="tel"
           placeholder="Your phone number"
-          className="mt-2 w-full rounded-lg border border-border bg-white px-4 py-3 text-sm text-foreground placeholder:text-muted focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+          className="mt-2 w-full rounded-lg border border-border bg-white px-4 py-3 text-sm text-foreground placeholder:text-muted transition-all duration-200 hover:border-primary/50 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
         />
       </div>
 
@@ -97,19 +97,19 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={status === "loading"}
-        className="w-full rounded-lg bg-primary px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-primary-dark disabled:cursor-not-allowed disabled:opacity-70"
+        className="w-full rounded-lg bg-primary px-6 py-3.5 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-primary-dark hover:shadow-lg hover:shadow-primary/25 active:translate-y-0 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:translate-y-0 disabled:hover:shadow-none"
       >
         {status === "loading" ? "Sending…" : "Send Message"}
       </button>
 
       {status === "success" && (
-        <p className="text-sm font-medium text-emerald-600">
+        <p className="animate-fade-in-up text-sm font-medium text-emerald-600">
           Thanks — your message has been sent. We&apos;ll get back to you
           shortly.
         </p>
       )}
       {status === "error" && (
-        <p className="text-sm font-medium text-red-600">
+        <p className="animate-fade-in-up text-sm font-medium text-red-600">
           Something went wrong sending your message. Please try again or
           contact us directly.
         </p>

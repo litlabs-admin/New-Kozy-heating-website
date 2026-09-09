@@ -94,12 +94,12 @@ export default function ServicesPage() {
 
       <section className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
-          <div className="relative aspect-[16/10] overflow-hidden rounded-2xl">
+          <div className="group relative aspect-16/10 overflow-hidden rounded-2xl">
             <Image
               src="/images/kozy-heating-van.webp"
               alt="Kozy Heating Solutions engineer and van"
               fill
-              className="object-cover"
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
             />
           </div>
           <div>
@@ -113,8 +113,14 @@ export default function ServicesPage() {
             </p>
             <ul className="mt-6 space-y-4">
               {checklist.map((item) => (
-                <li key={item} className="flex items-start gap-3">
-                  <CheckCircle2 size={20} className="mt-0.5 shrink-0 text-primary" />
+                <li
+                  key={item}
+                  className="group flex items-start gap-3 transition-transform duration-200 hover:translate-x-1"
+                >
+                  <CheckCircle2
+                    size={20}
+                    className="mt-0.5 shrink-0 text-primary transition-transform duration-200 group-hover:scale-110"
+                  />
                   <span className="text-sm font-medium text-foreground/90">
                     {item}
                   </span>

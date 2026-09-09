@@ -27,13 +27,18 @@ export function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-sm font-medium transition-colors ${
+                className={`group relative py-1 text-sm font-medium transition-colors ${
                   active
                     ? "text-primary"
                     : "text-foreground/80 hover:text-primary"
                 }`}
               >
                 {link.label}
+                <span
+                  className={`absolute -bottom-1 left-0 h-0.5 w-full origin-left scale-x-0 bg-primary transition-transform duration-300 ease-out group-hover:scale-x-100 ${
+                    active ? "scale-x-100" : ""
+                  }`}
+                />
               </Link>
             );
           })}
@@ -46,7 +51,7 @@ export function Header() {
         <button
           type="button"
           aria-label={open ? "Close menu" : "Open menu"}
-          className="lg:hidden inline-flex h-10 w-10 items-center justify-center rounded-md text-foreground"
+          className="lg:hidden inline-flex h-10 w-10 items-center justify-center rounded-md text-foreground transition-transform active:scale-90"
           onClick={() => setOpen((v) => !v)}
         >
           {open ? <X size={24} /> : <Menu size={24} />}
@@ -54,7 +59,7 @@ export function Header() {
       </div>
 
       {open && (
-        <div className="lg:hidden border-t border-border bg-background px-6 pb-6 pt-2">
+        <div className="animate-fade-in-up lg:hidden border-t border-border bg-background px-6 pb-6 pt-2">
           <nav className="flex flex-col gap-1">
             {navLinks.map((link) => {
               const active =
@@ -66,10 +71,10 @@ export function Header() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className={`rounded-md px-3 py-3 text-base font-medium ${
+                  className={`rounded-md px-3 py-3 text-base font-medium transition-colors duration-200 active:scale-[0.98] ${
                     active
                       ? "text-primary bg-primary-light"
-                      : "text-foreground/80"
+                      : "text-foreground/80 hover:bg-surface-alt hover:text-primary"
                   }`}
                 >
                   {link.label}

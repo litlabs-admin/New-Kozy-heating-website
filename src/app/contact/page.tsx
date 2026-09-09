@@ -48,9 +48,12 @@ export default function ContactPage() {
 
             <ul className="mt-10 space-y-6">
               {contactDetails.map(({ icon: Icon, label, value, href }) => (
-                <li key={label} className="flex items-start gap-4">
-                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary-light">
-                    <Icon size={20} className="text-primary" />
+                <li key={label} className="group flex items-start gap-4">
+                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary-light transition-all duration-300 group-hover:scale-110 group-hover:bg-primary">
+                    <Icon
+                      size={20}
+                      className="text-primary transition-colors duration-300 group-hover:text-white"
+                    />
                   </span>
                   <div>
                     <p className="font-heading text-base font-bold text-foreground">
@@ -59,7 +62,7 @@ export default function ContactPage() {
                     {href ? (
                       <a
                         href={href}
-                        className="text-sm text-muted hover:text-primary"
+                        className="text-sm text-muted transition-colors hover:text-primary"
                       >
                         {value}
                       </a>
