@@ -67,7 +67,7 @@ export default function AboutPage() {
           </div>
 
           <div>
-            <div className="group relative aspect-16/10 overflow-hidden rounded-2xl">
+            <div className="group relative aspect-video overflow-hidden rounded-2xl">
               <Image
                 src="/images/kozy-heating-van.webp"
                 alt="Kozy Heating Solutions engineer and van"

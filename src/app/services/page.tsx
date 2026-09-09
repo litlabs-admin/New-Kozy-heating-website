@@ -94,7 +94,7 @@ export default function ServicesPage() {
 
       <section className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
-          <div className="group relative aspect-16/10 overflow-hidden rounded-2xl">
+          <div className="group relative aspect-video overflow-hidden rounded-2xl">
             <Image
               src="/images/kozy-heating-van.webp"
               alt="Kozy Heating Solutions engineer and van"
