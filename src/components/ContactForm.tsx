@@ -27,8 +27,51 @@ const UK_MOBILE_RE = /^(?:\+44|0)7\d{9}$/;
 const UK_LANDLINE_RE = /^(?:\+44|0)[1-3]\d{8,9}$/;
 const UK_POSTCODE_RE = /^[A-Z]{1,2}\d[A-Z\d]?\s?\d[A-Z]{2}$/i;
 
+const COUNTRY_CODES = [
+  { iso: "GB", flag: "🇬🇧", name: "United Kingdom", dial: "+44" },
+  { iso: "IE", flag: "🇮🇪", name: "Ireland", dial: "+353" },
+  { iso: "PL", flag: "🇵🇱", name: "Poland", dial: "+48" },
+  { iso: "FR", flag: "🇫🇷", name: "France", dial: "+33" },
+  { iso: "DE", flag: "🇩🇪", name: "Germany", dial: "+49" },
+  { iso: "ES", flag: "🇪🇸", name: "Spain", dial: "+34" },
+  { iso: "IT", flag: "🇮🇹", name: "Italy", dial: "+39" },
+  { iso: "NL", flag: "🇳🇱", name: "Netherlands", dial: "+31" },
+  { iso: "PT", flag: "🇵🇹", name: "Portugal", dial: "+351" },
+  { iso: "RO", flag: "🇷🇴", name: "Romania", dial: "+40" },
+  { iso: "LT", flag: "🇱🇹", name: "Lithuania", dial: "+370" },
+  { iso: "IN", flag: "🇮🇳", name: "India", dial: "+91" },
+  { iso: "PK", flag: "🇵🇰", name: "Pakistan", dial: "+92" },
+  { iso: "US", flag: "🇺🇸", name: "United States / Canada", dial: "+1" },
+  { iso: "AU", flag: "🇦🇺", name: "Australia", dial: "+61" },
+] as const;
+
+type CountryIso = (typeof COUNTRY_CODES)[number]["iso"];
+
+function getDial(iso: CountryIso) {
+  return COUNTRY_CODES.find((c) => c.iso === iso)?.dial ?? "+44";
+}
+
 function normalisePhone(value: string) {
   return value.replace(/[\s()-]/g, "");
+}
+
+/** Returns the full international number (e.g. +447123456789), or null if invalid. */
+function toInternational(value: string, iso: CountryIso): string | null {
+  let phone = normalisePhone(value);
+  if (phone.startsWith("00")) phone = `+${phone.slice(2)}`;
+
+  // Number typed with its own country code overrides the dropdown.
+  if (!phone.startsWith("+")) {
+    const national = iso === "IT" ? phone : phone.replace(/^0/, "");
+    phone = `${getDial(iso)}${national}`;
+  }
+
+  if (!/^\+\d{8,15}$/.test(phone)) return null;
+  if (phone.startsWith("+44")) {
+    const uk = `0${phone.slice(3)}`;
+    if (!UK_MOBILE_RE.test(uk) && !UK_LANDLINE_RE.test(uk)) return null;
+  }
+  return phone;
 }
 
 function formatPostcode(value: string) {
@@ -38,7 +81,11 @@ function formatPostcode(value: string) {
     : compact;
 }
 
-function validateField(field: FieldName, raw: string): string | undefined {
+function validateField(
+  field: FieldName,
+  raw: string,
+  country: CountryIso,
+): string | undefined {
   const value = raw.trim();
 
   switch (field) {
@@ -56,9 +103,10 @@ function validateField(field: FieldName, raw: string): string | undefined {
       return;
     case "phone": {
       if (!value) return "Please enter your phone number.";
-      const phone = normalisePhone(value);
-      if (!UK_MOBILE_RE.test(phone) && !UK_LANDLINE_RE.test(phone))
-        return "Please enter a valid UK phone number, e.g. 07123 456789.";
+      if (!toInternational(value, country))
+        return country === "GB"
+          ? "Please enter a valid UK phone number, e.g. 07123 456789."
+          : "Please enter a valid phone number for the selected country.";
       return;
     }
     case "postcode":
@@ -75,10 +123,10 @@ function validateField(field: FieldName, raw: string): string | undefined {
   }
 }
 
-function validateAll(values: Values): Errors {
+function validateAll(values: Values, country: CountryIso): Errors {
   const errors: Errors = {};
   for (const field of FIELD_ORDER) {
-    const error = validateField(field, values[field]);
+    const error = validateField(field, values[field], country);
     if (error) errors[field] = error;
   }
   return errors;
@@ -102,6 +150,7 @@ function FieldError({ id, message }: { id: string; message?: string }) {
 
 export function ContactForm() {
   const [values, setValues] = useState<Values>(EMPTY);
+  const [country, setCountry] = useState<CountryIso>("GB");
   const [errors, setErrors] = useState<Errors>({});
   const [touched, setTouched] = useState<Partial<Record<FieldName, boolean>>>({});
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
@@ -117,7 +166,15 @@ export function ContactForm() {
     const value = event.target.value;
     setValues((prev) => ({ ...prev, [field]: value }));
     if (touched[field]) {
-      setErrors((prev) => ({ ...prev, [field]: validateField(field, value) }));
+      setErrors((prev) => ({ ...prev, [field]: validateField(field, value, country) }));
+    }
+  }
+
+  function handleCountryChange(event: ChangeEvent<HTMLSelectElement>) {
+    const next = event.target.value as CountryIso;
+    setCountry(next);
+    if (touched.phone) {
+      setErrors((prev) => ({ ...prev, phone: validateField("phone", values.phone, next) }));
     }
   }
 
@@ -129,7 +186,7 @@ export function ContactForm() {
       setValues((prev) => ({ ...prev, postcode: value }));
     }
     setTouched((prev) => ({ ...prev, [field]: true }));
-    setErrors((prev) => ({ ...prev, [field]: validateField(field, value) }));
+    setErrors((prev) => ({ ...prev, [field]: validateField(field, value, country) }));
   }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -137,7 +194,7 @@ export function ContactForm() {
     if (status === "loading") return;
 
     const form = event.currentTarget;
-    const nextErrors = validateAll(values);
+    const nextErrors = validateAll(values, country);
     if (!captchaToken) {
       nextErrors.captcha = "Please complete the captcha to confirm you're not a robot.";
     }
@@ -175,7 +232,7 @@ export function ContactForm() {
       "h-captcha-response": captchaToken,
       "Full Name": name,
       "Email Address": email,
-      "Phone Number": values.phone.trim(),
+      "Phone Number": toInternational(values.phone, country) ?? values.phone.trim(),
       Postcode: values.postcode.trim() ? formatPostcode(values.postcode) : "Not provided",
       Message: values.message.trim(),
       Submitted: submitted,
@@ -264,29 +321,43 @@ export function ContactForm() {
         <FieldError id="email-error" message={errors.email} />
       </div>
 
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-        <div>
-          <label htmlFor="phone" className="text-sm font-medium text-foreground">
-            Phone Number <span className="text-red-600">*</span>
-          </label>
+      <div>
+        <label htmlFor="phone" className="text-sm font-medium text-foreground">
+          Phone Number <span className="text-red-600">*</span>
+        </label>
+        <div className="flex gap-2">
+          <select
+            aria-label="Country code"
+            value={country}
+            onChange={handleCountryChange}
+            className="mt-2 shrink-0 cursor-pointer rounded-lg border border-border bg-white px-3 py-3 text-sm text-foreground transition-all duration-200 hover:border-primary/50 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+          >
+            {COUNTRY_CODES.map((c) => (
+              <option key={c.iso} value={c.iso} title={c.name}>
+                {c.flag} {c.dial}
+              </option>
+            ))}
+          </select>
           <input
             id="phone"
             name="phone"
             type="tel"
             inputMode="tel"
-            autoComplete="tel"
+            autoComplete="tel-national"
             maxLength={20}
-            placeholder="07123 456789"
+            placeholder={country === "GB" ? "07123 456789" : "Phone number"}
             value={values.phone}
             onChange={handleChange}
             onBlur={handleBlur}
             aria-invalid={Boolean(errors.phone)}
             aria-describedby={errors.phone ? "phone-error" : undefined}
-            className={fieldClass(Boolean(errors.phone))}
+            className={`${fieldClass(Boolean(errors.phone))} min-w-0 flex-1`}
           />
-          <FieldError id="phone-error" message={errors.phone} />
         </div>
+        <FieldError id="phone-error" message={errors.phone} />
+      </div>
 
+      <div className="grid grid-cols-1 gap-6">
         <div>
           <label htmlFor="postcode" className="text-sm font-medium text-foreground">
             Postcode <span className="text-xs font-normal text-muted">(optional)</span>
