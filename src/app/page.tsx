@@ -39,6 +39,41 @@ const coreServices = [
   },
 ];
 
+const accreditations = [
+  {
+    name: "Ideal Heating",
+    label: "Ideal Max",
+    src: "/images/accreditations/ideal-heating-logo.svg",
+    width: 204,
+    height: 107,
+    className: "h-16 sm:h-20",
+  },
+  {
+    name: "Alpha",
+    label: "Alpha One",
+    src: "/images/accreditations/alpha-logo.png",
+    width: 154,
+    height: 71,
+    className: "h-12 sm:h-16",
+  },
+  {
+    name: "BAXI",
+    label: "BAXI Approved",
+    src: "/images/accreditations/baxi-logo.svg",
+    width: 91,
+    height: 28,
+    className: "h-9 sm:h-12",
+  },
+  {
+    name: "Vaillant",
+    label: "Vaillant Advance",
+    src: "/images/accreditations/vaillant-logo.png",
+    width: 272,
+    height: 72,
+    className: "h-10 sm:h-14",
+  },
+];
+
 export default function Home() {
   return (
     <>
@@ -120,29 +155,36 @@ export default function Home() {
           ))}
         </div>
 
-        <div className="mt-8 rounded-2xl border border-border bg-white px-6 py-8 text-center sm:px-10">
+        <div className="mt-8 rounded-2xl border border-border bg-white px-6 py-8 text-center sm:px-10 sm:py-10">
           <h3 className="font-heading text-xl font-semibold text-foreground sm:text-2xl">
-            Accredited boiler installer
+            Accreditations &amp; memberships
           </h3>
-          <div className="mt-6 flex flex-col items-center justify-center gap-6 sm:flex-row sm:gap-12">
-            <Image
-              src="/images/accreditations/ideal-heating-logo.svg"
-              alt="Ideal Heating"
-              width={204}
-              height={107}
-              className="h-16 w-auto sm:h-20"
-            />
-            <span aria-hidden="true" className="hidden h-16 w-px bg-border sm:block" />
-            <Image
-              src="/images/accreditations/alpha-logo.png"
-              alt="Alpha"
-              width={154}
-              height={71}
-              className="h-12 w-auto sm:h-16"
-            />
-          </div>
-          <p className="mt-6 text-sm text-muted">
-            Accredited to install Ideal and Alpha boilers.
+          <ul className="mx-auto mt-8 grid max-w-5xl grid-cols-2 gap-y-8 lg:grid-cols-4">
+            {accreditations.map((item, i) => (
+              <li key={item.name} className="relative flex flex-col items-center px-4">
+                {i > 0 && (
+                  <span
+                    aria-hidden="true"
+                    className={`absolute left-0 top-1 h-16 w-px bg-border sm:h-20 ${
+                      i === 2 ? "hidden lg:block" : ""
+                    }`}
+                  />
+                )}
+                <div className="flex h-18 items-center justify-center sm:h-22">
+                  <Image
+                    src={item.src}
+                    alt={item.name}
+                    width={item.width}
+                    height={item.height}
+                    className={`w-auto max-w-full ${item.className}`}
+                  />
+                </div>
+                <p className="mt-3 text-sm text-muted sm:text-base">{item.label}</p>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-8 text-sm text-muted sm:text-base">
+            We install, service and repair a wide range of makes and models
           </p>
         </div>
       </section>
