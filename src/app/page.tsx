@@ -1,9 +1,11 @@
+import Image from "next/image";
 import { Shield, FileText, Wrench, CheckCircle2, Star } from "lucide-react";
 import { Button } from "@/components/Button";
 import { HeroBackground } from "@/components/HeroBackground";
 import { ServiceSummaryCard } from "@/components/ServiceSummaryCard";
 import { CtaBand } from "@/components/CtaBand";
 import { FacebookIcon } from "@/components/icons/FacebookIcon";
+import { BoilerIcon, HeatingHouseIcon, WrenchIcon } from "@/components/icons/ServiceIcons";
 import { siteConfig } from "@/lib/site-config";
 
 const whyChooseUs = [
@@ -16,18 +18,21 @@ const whyChooseUs = [
 const coreServices = [
   {
     title: "Boiler installation",
+    icon: BoilerIcon,
     description:
       "New boiler installations using trusted brands, with Ideal and Alpha as preferred options.",
     href: "/services",
   },
   {
     title: "Servicing & repairs",
+    icon: WrenchIcon,
     description:
       "Boiler servicing, fault finding and repair work to help keep your heating running safely and reliably.",
     href: "/services",
   },
   {
     title: "Gas, LPG & heating systems",
+    icon: HeatingHouseIcon,
     description:
       "Natural gas and LPG work, heating system support, radiators, controls and thermostats.",
     href: "/services",
@@ -113,6 +118,32 @@ export default function Home() {
           {coreServices.map((service) => (
             <ServiceSummaryCard key={service.title} {...service} />
           ))}
+        </div>
+
+        <div className="mt-8 rounded-2xl border border-border bg-white px-6 py-8 text-center sm:px-10">
+          <h3 className="font-heading text-xl font-semibold text-foreground sm:text-2xl">
+            Accredited boiler installer
+          </h3>
+          <div className="mt-6 flex flex-col items-center justify-center gap-6 sm:flex-row sm:gap-12">
+            <Image
+              src="/images/accreditations/ideal-heating-logo.svg"
+              alt="Ideal Heating"
+              width={204}
+              height={107}
+              className="h-16 w-auto sm:h-20"
+            />
+            <span aria-hidden="true" className="hidden h-16 w-px bg-border sm:block" />
+            <Image
+              src="/images/accreditations/alpha-logo.png"
+              alt="Alpha"
+              width={154}
+              height={71}
+              className="h-12 w-auto sm:h-16"
+            />
+          </div>
+          <p className="mt-6 text-sm text-muted">
+            Accredited to install Ideal and Alpha boilers.
+          </p>
         </div>
       </section>
 
