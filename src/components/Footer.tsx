@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Logo } from "./Logo";
-import { siteConfig, footerQuickLinks } from "@/lib/site-config";
+import { siteConfig, footerQuickLinks, footerLegalLinks } from "@/lib/site-config";
+import { controller } from "@/lib/legal-content";
 
 export function Footer() {
   return (
@@ -44,8 +45,32 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-border pt-6 text-center text-xs text-muted">
-          © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
+        <div className="mt-12 border-t border-border pt-6">
+          <p className="text-xs leading-relaxed text-muted">
+            {controller.tradingName} is a trading name of {controller.legalName},{" "}
+            {controller.legalForm}. Business address: {controller.address}. Gas
+            Safe registered business {controller.gasSafe}. Telephone:{" "}
+            {controller.phone}. Email: {controller.email}.
+          </p>
+
+          <div className="mt-6 flex flex-col items-center gap-4 border-t border-border pt-6 sm:flex-row sm:justify-between">
+            <p className="text-xs text-muted">
+              © {new Date().getFullYear()} {siteConfig.name}. All rights
+              reserved.
+            </p>
+            <ul className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+              {footerLegalLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-xs text-muted transition-colors hover:text-primary"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </footer>

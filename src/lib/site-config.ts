@@ -22,3 +22,8 @@ export const footerQuickLinks = [
   { label: "Contact", href: "/contact" },
   { label: "About", href: "/about" },
 ];
+
+export const footerLegalLinks = [
+  { label: "Privacy Policy", href: "/privacy" },
+  { label: "Cookie Policy", href: "/cookies" },
+];
