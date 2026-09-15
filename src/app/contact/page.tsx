@@ -39,12 +39,12 @@ const contactDetails = [
 export default function ContactPage() {
   return (
     <section className="relative overflow-hidden">
-      <HeroBackground src="/images/hero-contact.webp" alt="Building exterior" />
+      <HeroBackground src="/images/hero-contact.webp" alt="Alpha innotec heat pump installed outside a modern building" />
       <div className="mx-auto max-w-7xl px-6 py-20 sm:py-24 lg:px-8">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-start">
           <div>
             <h1 className="font-heading text-4xl font-bold leading-tight text-foreground sm:text-5xl">
-              Get In Touch
+              Get in touch
             </h1>
             <p className="mt-6 max-w-md text-base leading-relaxed text-foreground/80">
               For quotes, heating enquiries or urgent issues, contact Kozy
@@ -68,7 +68,7 @@ export default function ContactPage() {
                     {href ? (
                       <a
                         href={href}
-                        className="text-sm text-muted transition-colors hover:text-primary"
+                        className="text-sm font-medium text-primary underline-offset-4 transition-colors hover:text-primary-dark hover:underline"
                       >
                         {value}
                       </a>
@@ -83,7 +83,7 @@ export default function ContactPage() {
 
           <div className="rounded-2xl bg-white p-8 shadow-lg sm:p-10">
             <h2 className="font-heading text-2xl font-bold text-foreground">
-              Send an Enquiry
+              Send an enquiry
             </h2>
             <div className="mt-6">
               <ContactForm />

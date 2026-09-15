@@ -38,8 +38,18 @@ export function Footer() {
               Contact
             </h3>
             <ul className="mt-4 space-y-2 text-sm text-muted">
-              <li>Phone / WhatsApp / text: {siteConfig.phone}</li>
-              <li>Email: {siteConfig.email}</li>
+              <li>
+                Phone / WhatsApp / text:{" "}
+                <a href={siteConfig.phoneHref} className="font-medium text-primary underline-offset-4 transition-colors hover:text-primary-dark hover:underline">
+                  {siteConfig.phone}
+                </a>
+              </li>
+              <li>
+                Email:{" "}
+                <a href={`mailto:${siteConfig.email}`} className="font-medium text-primary underline-offset-4 transition-colors hover:text-primary-dark hover:underline">
+                  {siteConfig.email}
+                </a>
+              </li>
               <li>Address: {siteConfig.address}</li>
               <li>Service area: {siteConfig.serviceArea}</li>
             </ul>
@@ -51,7 +61,14 @@ export function Footer() {
             {controller.tradingName} is a trading name of {controller.legalName},{" "}
             {controller.legalForm}. Business address: {controller.address}. Gas
             Safe registered business {controller.gasSafe}. Telephone:{" "}
-            {controller.phone}. Email: {controller.email}.
+            <a href={controller.phoneHref} className="font-medium text-primary underline-offset-4 transition-colors hover:text-primary-dark hover:underline">
+              {controller.phone}
+            </a>
+            . Email:{" "}
+            <a href={controller.emailHref} className="font-medium text-primary underline-offset-4 transition-colors hover:text-primary-dark hover:underline">
+              {controller.email}
+            </a>
+            .
           </p>
 
           <div className="mt-6 flex flex-col items-center gap-4 border-t border-border pt-6 sm:flex-row sm:justify-between">

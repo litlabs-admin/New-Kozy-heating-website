@@ -251,8 +251,8 @@ export const privacySections: LegalSection[] = [
         text: "We will also disclose information where we are legally required to do so, or where it is necessary to establish, exercise or defend a legal claim.",
       },
       {
-        kind: "note",
-        text: "The exact list of providers is being finalised before launch and will be kept accurate here.",
+        kind: "p",
+        text: "Each of these providers only receives the information they need to do their job, and may only use it for that purpose. We never sell your information or share it for marketing. If you would like details of a specific provider, please contact us.",
       },
     ],
   },

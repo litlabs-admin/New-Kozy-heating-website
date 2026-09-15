@@ -111,7 +111,7 @@ function validateField(
     }
     case "postcode":
       if (value && !UK_POSTCODE_RE.test(value))
-        return "Please enter a valid UK postcode, e.g. SW1A 1AA.";
+        return "Please enter a valid UK postcode, e.g. G74 4RZ.";
       return;
     case "message":
       if (!value) return "Please tell us how we can help.";
@@ -369,7 +369,7 @@ export function ContactForm() {
             autoComplete="postal-code"
             autoCapitalize="characters"
             maxLength={8}
-            placeholder="e.g. SW1A 1AA"
+            placeholder="e.g. G74 4RZ"
             value={values.postcode}
             onChange={handleChange}
             onBlur={handleBlur}

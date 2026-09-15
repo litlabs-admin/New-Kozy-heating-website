@@ -77,7 +77,7 @@ export default function ServicesPage() {
   return (
     <>
       <section className="relative overflow-hidden">
-        <HeroBackground src="/images/hero-services.webp" alt="Heating installation background" />
+        <HeroBackground src="/images/hero-services.webp" alt="Ornate cast iron radiator above a wooden floor" />
         <div className="mx-auto max-w-7xl px-6 py-20 sm:py-24 lg:px-8">
           <div className="max-w-2xl">
             <h1 className="font-heading text-4xl font-bold leading-tight text-foreground sm:text-5xl">
@@ -85,7 +85,7 @@ export default function ServicesPage() {
             </h1>
             <p className="mt-6 text-base leading-relaxed text-foreground/80 sm:text-lg">
               From boiler servicing and repairs to new installations for both
-              natural gas and L.P.G appliances, Kozy Heating Solutions
+              natural gas and LPG appliances, Kozy Heating Solutions
               provides practical, reliable support for homes and businesses.
             </p>
           </div>
@@ -135,7 +135,7 @@ export default function ServicesPage() {
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="font-heading text-3xl font-bold text-foreground">
-              What We Do
+              What we do
             </h2>
             <p className="mt-4 text-base leading-relaxed text-muted">
               Explore core heating and gas services from Kozy Heating

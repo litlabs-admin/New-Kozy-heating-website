@@ -38,7 +38,7 @@ export default function Home() {
   return (
     <>
       <section className="relative overflow-hidden">
-        <HeroBackground src="/images/hero-home.webp" alt="Heating engineer at work" />
+        <HeroBackground src="/images/hero-home.webp" alt="Traditional industrial boiler with open firebox doors" />
         <div className="mx-auto max-w-7xl px-6 py-20 sm:py-28 lg:px-8">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_360px] lg:items-start">
             <div className="max-w-2xl">
@@ -48,7 +48,7 @@ export default function Home() {
               <p className="mt-6 text-base leading-relaxed text-foreground/80 sm:text-lg">
                 Kozy Heating Solutions is run by Kenny Kozak, a former British
                 Gas engineer who started the business in 2006. We provide
-                boiler installation, servicing and repairs on both L.P.G and
+                boiler installation, servicing and repairs on both LPG and
                 natural gas appliances – domestic and commercial. We focus on
                 clear advice, quality workmanship and doing the job right
                 first time, every time.

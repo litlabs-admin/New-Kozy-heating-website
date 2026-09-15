@@ -22,14 +22,14 @@ function ContactAddress() {
       <br />
       <a
         href={controller.phoneHref}
-        className="text-primary transition-colors hover:text-primary-dark"
+        className="font-medium text-primary underline-offset-4 transition-colors hover:text-primary-dark hover:underline"
       >
         {controller.phone}
       </a>
       <br />
       <a
         href={controller.emailHref}
-        className="text-primary transition-colors hover:text-primary-dark"
+        className="font-medium text-primary underline-offset-4 transition-colors hover:text-primary-dark hover:underline"
       >
         {controller.email}
       </a>
