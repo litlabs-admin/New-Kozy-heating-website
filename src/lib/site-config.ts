@@ -5,6 +5,7 @@ export const siteConfig = {
   phoneHref: "tel:+447971956315",
   whatsappHref: "https://wa.me/447971956315",
   email: "Heat.team@kozyheating.co.uk",
+  address: "6 Bressay, East Kilbride, Glasgow, G74 4RZ",
   serviceArea: "Scotland-wide",
   facebookUrl: "https://www.facebook.com/kozyheatingdolutions/",
   quoteHref: "/contact",

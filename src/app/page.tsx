@@ -38,7 +38,7 @@ export default function Home() {
   return (
     <>
       <section className="relative overflow-hidden">
-        <HeroBackground src="/images/hero-home.jpg" alt="Heating engineer at work" />
+        <HeroBackground src="/images/hero-home.webp" alt="Heating engineer at work" />
         <div className="mx-auto max-w-7xl px-6 py-20 sm:py-28 lg:px-8">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_360px] lg:items-start">
             <div className="max-w-2xl">
@@ -53,9 +53,9 @@ export default function Home() {
                 clear advice, quality workmanship and doing the job right
                 first time, every time.
               </p>
-              <div className="mt-8 flex flex-wrap gap-4">
-                <Button href="/contact">Request a quote</Button>
-                <Button href={siteConfig.whatsappHref} variant="secondary">
+              <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
+                <Button href="/contact" className="w-full sm:w-auto">Request a quote</Button>
+                <Button href={siteConfig.whatsappHref} variant="secondary" className="w-full sm:w-auto">
                   Call / WhatsApp
                 </Button>
               </div>

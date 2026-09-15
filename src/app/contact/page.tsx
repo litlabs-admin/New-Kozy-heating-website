@@ -24,6 +24,12 @@ const contactDetails = [
   },
   {
     icon: MapPin,
+    label: "Address",
+    value: siteConfig.address,
+    href: undefined,
+  },
+  {
+    icon: MapPin,
     label: "Service Area",
     value: siteConfig.serviceArea,
     href: undefined,
@@ -33,7 +39,7 @@ const contactDetails = [
 export default function ContactPage() {
   return (
     <section className="relative overflow-hidden">
-      <HeroBackground src="/images/hero-contact.jpg" alt="Building exterior" />
+      <HeroBackground src="/images/hero-contact.webp" alt="Building exterior" />
       <div className="mx-auto max-w-7xl px-6 py-20 sm:py-24 lg:px-8">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-start">
           <div>

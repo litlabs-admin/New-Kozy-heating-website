@@ -40,6 +40,7 @@ export function Footer() {
             <ul className="mt-4 space-y-2 text-sm text-muted">
               <li>Phone / WhatsApp / text: {siteConfig.phone}</li>
               <li>Email: {siteConfig.email}</li>
+              <li>Address: {siteConfig.address}</li>
               <li>Service area: {siteConfig.serviceArea}</li>
             </ul>
           </div>

@@ -3,13 +3,7 @@
  *
  * The table of contents, the page body and the cookie tables all render from
  * these arrays, so the side navigation can never drift from the content.
- *
- * Staging placeholders use the PENDING_* constants below. They are deliberately
- * obvious on screen: the business address and retention periods must be
- * confirmed in writing before launch.
  */
-
-export const PENDING_ADDRESS = "[CONFIRMED ADDRESS — pending]";
 
 export const PRIVACY_LAST_UPDATED = "15 September 2026";
 export const COOKIES_LAST_UPDATED = "15 September 2026";
@@ -19,7 +13,7 @@ export const controller = {
   legalName: "Kenneth Kozak",
   tradingName: "Kozy Heating Solutions",
   legalForm: "sole trader",
-  address: PENDING_ADDRESS,
+  address: "6 Bressay, East Kilbride, Glasgow, G74 4RZ",
   phone: "07971 956315",
   phoneHref: "tel:+447971956315",
   smsHref: "sms:+447971956315",
@@ -126,10 +120,6 @@ export const privacySections: LegalSection[] = [
       {
         kind: "p",
         text: `Gas Safe registered business ${controller.gasSafe}. As a sole trader, ${controller.tradingName} does not have a company number or registered office.`,
-      },
-      {
-        kind: "note",
-        text: "Our business address is being confirmed and will be published here before launch.",
       },
     ],
   },
@@ -296,26 +286,22 @@ export const privacySections: LegalSection[] = [
         rows: [
           [
             "Enquiries that do not become a job",
-            "Up to 24 months from your last contact with us",
+            "12 months from your last contact with us",
           ],
           [
             "Customer and job records, invoices and gas safety documents",
-            "Six years from the end of the work, in line with tax and limitation periods",
+            "Six years from the end of the tax year in which the work was completed, to meet HMRC record-keeping rules and allow for any warranty or legal claims",
           ],
           [
             "Website server and security logs",
-            "The short retention period operated by our hosting provider",
+            "Up to 30 days, unless needed longer to investigate a security issue",
           ],
           [
             "The cookie notice flag in your browser",
             "Until you clear your browser storage",
           ],
         ],
-      },
-      {
-        kind: "note",
-        text: "These retention periods are our proposed starting point and are being confirmed before launch.",
-      },
+      }
     ],
   },
   {

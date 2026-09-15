@@ -77,7 +77,7 @@ export default function ServicesPage() {
   return (
     <>
       <section className="relative overflow-hidden">
-        <HeroBackground src="/images/hero-about.jpg" alt="Heating installation background" />
+        <HeroBackground src="/images/hero-services.webp" alt="Heating installation background" />
         <div className="mx-auto max-w-7xl px-6 py-20 sm:py-24 lg:px-8">
           <div className="max-w-2xl">
             <h1 className="font-heading text-4xl font-bold leading-tight text-foreground sm:text-5xl">
